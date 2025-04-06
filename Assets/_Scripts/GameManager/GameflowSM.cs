@@ -10,6 +10,7 @@ namespace PlantsZombiesAR.GameManager
         public enum EGameState
         {
             WaitingPhase,
+            FindPlanePhase,
             SelectPhase,
             CountdownPhase,
             PlantPhase,
@@ -21,6 +22,7 @@ namespace PlantsZombiesAR.GameManager
         public void Init()
         {
             _stateDict.Add(EGameState.WaitingPhase, new WaitingPhaseState(EGameState.WaitingPhase));
+            _stateDict.Add(EGameState.FindPlanePhase, new FindPlanePhaseState(EGameState.FindPlanePhase));
             _stateDict.Add(EGameState.SelectPhase, new SelectPhaseState(EGameState.SelectPhase));
             _stateDict.Add(EGameState.CountdownPhase, new CountdownPhase(EGameState.CountdownPhase));
             _stateDict.Add(EGameState.PlantPhase, new PlantPhaseState(EGameState.PlantPhase));

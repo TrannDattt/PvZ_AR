@@ -187,7 +187,7 @@ public class ARTemplateMenuManager : MonoBehaviour
     }
 
     [SerializeField]
-    XRInputValueReader<Vector2> m_TapStartPositionInput = new XRInputValueReader<Vector2>("Tap Start Position");
+    XRInputValueReader<Vector2> m_TapStartPositionInput = new XRInputValueReader<Vector2>("Tap StartMenu Position");
 
     /// <summary>
     /// Input to use for the screen tap start position.

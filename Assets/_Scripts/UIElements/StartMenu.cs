@@ -1,17 +1,16 @@
 using PlantsZombiesAR.Helpers;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace PlantsZombiesAR.UIElements
 {
-    public class NavigateMenu : Singleton<NavigateMenu>
+    public class StartMenu : GameMenuSingleton<StartMenu>
     {
-
-        private void StartGame()
+        protected override void Start()
         {
-            
+            base.Start();
+            gameObject.SetActive(true);
         }
     }
 }

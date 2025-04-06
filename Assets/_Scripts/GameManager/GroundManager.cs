@@ -17,7 +17,8 @@ namespace PlantsZombiesAR.GameManager
 
         [SerializeField] private GameObject _ingameGroundPreb;
 
-        private GameObject _ground;
+        public GameObject Ground { get; private set; }
+
         private Camera _camera;
 
         public PlantSlot CurSlot { get; private set; }
@@ -36,7 +37,18 @@ namespace PlantsZombiesAR.GameManager
 
         private void PlaceGroundOnPlane(ARPlane plane)
         {
-            _ground = Instantiate(_ingameGroundPreb, plane.transform.position, Quaternion.identity);
+            Ground = Instantiate(_ingameGroundPreb, plane.transform.position, Quaternion.identity);
+            Ground.SetActive(false);
+        }
+
+        public void ActivePlane()
+        {
+            Ground.SetActive(true);
+        }
+
+        public void DeactivePlane()
+        {
+            Ground.SetActive(false);
         }
 
         public void UpdateSelectedSlot(Vector2 touchPos)
@@ -54,9 +66,9 @@ namespace PlantsZombiesAR.GameManager
 
         private void OnPlaneChanged(ARPlanesChangedEventArgs args)
         {
-            foreach(ARPlane plane in args.added)
+            foreach (ARPlane plane in args.added)
             {
-                if (!_ground)
+                if (!Ground)
                 {
                     PlaceGroundOnPlane(plane);
                 }

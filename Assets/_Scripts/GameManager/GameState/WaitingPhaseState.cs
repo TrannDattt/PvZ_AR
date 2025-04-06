@@ -5,7 +5,7 @@ namespace PlantsZombiesAR.GameManager
 {
     public class WaitingPhaseState : BaseGameState
     {
-        private NavigateMenu _navigateMenu => NavigateMenu.Instance;
+        private StartMenu _startMenu => StartMenu.Instance;
 
         public WaitingPhaseState(EGameState stateKey) : base(stateKey)
         {
@@ -20,14 +20,14 @@ namespace PlantsZombiesAR.GameManager
         {
             base.Enter();
 
-            _navigateMenu.gameObject.SetActive(true);
+            _startMenu.gameObject.SetActive(true);
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            _navigateMenu.gameObject.SetActive(false);
+            _startMenu.gameObject.SetActive(false);
         }
 
         public override void FixedDo()
@@ -39,7 +39,7 @@ namespace PlantsZombiesAR.GameManager
         {
             if (_isFinished)
             {
-                return EGameState.SelectPhase;
+                return EGameState.FindPlanePhase;
             }
 
             return base.GetNextState();

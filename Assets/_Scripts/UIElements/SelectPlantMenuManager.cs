@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace PlantsZombiesAR.UIElements
 {
-    public class SelectPlantMenuManager : Singleton<SelectPlantMenuManager>
+    public class SelectPlantMenuManager : GameMenuSingleton<SelectPlantMenuManager>
     {
         private const int MAX_PLANT = 5;
 
@@ -23,7 +23,7 @@ namespace PlantsZombiesAR.UIElements
         //private List<ShopItem> _itemList = new();
         private Dictionary<GameObject, ShopItem> _indicatorDict = new();
 
-        public void InitMenu()
+        public override void InitMenu()
         {
             //_itemList = GetComponentsInChildren<ShopItem>(false).ToList();
             GetAllItems();
@@ -45,7 +45,7 @@ namespace PlantsZombiesAR.UIElements
                 Debug.Log(null);
                 return;
             }
-            Debug.Log(itemInfoList.Length);
+            //Debug.Log(itemInfoList.Length);
             for (int i = 0; i < 10; i++)
             {
                 var index = Mathf.Min(i, itemInfoList.Length - 1);
@@ -89,11 +89,6 @@ namespace PlantsZombiesAR.UIElements
         private void UpdateCount()
         {
             _plantCount.text = $"{SelectedItems.Count}/{MAX_PLANT}";
-        }
-
-        private void Start()
-        {
-            gameObject.SetActive(false);
         }
     }
 }
