@@ -1722,7 +1722,7 @@ Transform:
   m_GameObject: {fileID: 582334886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1170, y: 540, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1730,6 +1730,7 @@ Transform:
   - {fileID: 95484516}
   - {fileID: 763846433}
   - {fileID: 1114967980}
+  - {fileID: 1874770100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &593990971
@@ -3582,7 +3583,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6368bc0890665664d92f5a540b5cb1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testLevel: {fileID: 11400000, guid: e1a728bec573be943b7be3e5cf6b8980, type: 2}
+  _delayTime: 10
+  _intervalTime: 10
+  _spawnOffset: {x: 0, y: 0, z: 1}
 --- !u!1001 &1157232632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3966,6 +3969,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267781127}
   m_CullTransparentMesh: 1
+--- !u!1 &1274359082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1274359083}
+  - component: {fileID: 1274359084}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1274359083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274359082}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2060281737}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1274359084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274359082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77691333eed9f344f9339f84dddebc55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1326689738
 GameObject:
   m_ObjectHideFlags: 0
@@ -5123,6 +5170,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1274359084}
+        m_TargetAssemblyTypeName: PlantsZombiesAR.GameManager.LevelManager, Assembly-CSharp
+        m_MethodName: GetLevelData
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: e1a728bec573be943b7be3e5cf6b8980,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: PlantsZombiesAR.GameManager.LevelDataSO,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1808419734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5193,6 +5254,52 @@ Transform:
   - {fileID: 410087041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1874770099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1874770100}
+  - component: {fileID: 1874770101}
+  m_Layer: 0
+  m_Name: ZombiePooling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1874770100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874770099}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 582334887}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1874770101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874770099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee33653c5678c04f8b0eef6b7744206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _norZomPreb: {fileID: 2288075692610625626, guid: bdf313769e47ee244a391e9c6fee08e4,
+    type: 3}
 --- !u!1 &1929968984
 GameObject:
   m_ObjectHideFlags: 0
@@ -5529,6 +5636,7 @@ Transform:
   - {fileID: 647695577}
   - {fileID: 331601270}
   - {fileID: 1695834492}
+  - {fileID: 1274359083}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2072473605

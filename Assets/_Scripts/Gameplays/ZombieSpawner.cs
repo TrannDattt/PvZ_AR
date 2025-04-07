@@ -10,6 +10,7 @@ namespace PlantsZombiesAR.Gameplays
     {
         [SerializeField] private float _delayTime;
         [SerializeField] private float _intervalTime;
+        [SerializeField] private Vector3 _spawnOffset = Vector3.forward;
 
         public int ZombieToSpawn { get; private set; }
         public int ZombieSpawned { get; private set; }
@@ -17,30 +18,7 @@ namespace PlantsZombiesAR.Gameplays
         private List<Transform> _spawnPosList = new();
         private List<StatSO> _zombieList = new();
 
-        public LevelDataSO testLevel;
-
-        //public void InitSpawner(LevelDataSO levelData)
-        //{
-        //    _spawnPosList.Clear();
-        //    foreach(Transform transform in GroundManager.Instance.Ground.transform) 
-        //    {
-        //        _spawnPosList.Add(transform);
-        //    }
-        //    Debug.Log(_spawnPosList.Count);
-
-        //    _zombieList.Clear();
-        //    foreach (var zombieType in levelData.Zombies)
-        //    {
-        //        for (int i = 0; i < zombieType.Count; i++)
-        //        {
-        //            _zombieList.Add(zombieType.ZombieData);
-        //        }
-        //    }
-        //    ZombieToSpawn = _zombieList.Count;
-        //    ZombieSpawned = 0;
-        //}
-
-        public void InitSpawner()
+        public void InitSpawner(LevelDataSO levelData)
         {
             _spawnPosList.Clear();
             foreach (Transform transform in GroundManager.Instance.Ground.transform.Find("PlantPos").transform)
@@ -49,30 +27,50 @@ namespace PlantsZombiesAR.Gameplays
             }
 
             _zombieList.Clear();
-            foreach (var zombieType in testLevel.Zombies)
+            foreach (var zombieType in levelData.Zombies)
             {
                 for (int i = 0; i < zombieType.Count; i++)
                 {
                     _zombieList.Add(zombieType.ZombieData);
                 }
             }
-
             ZombieToSpawn = _zombieList.Count;
             ZombieSpawned = 0;
         }
+
+        //public void InitSpawner()
+        //{
+        //    _spawnPosList.Clear();
+        //    foreach (Transform transform in GroundManager.Instance.Ground.transform.Find("PlantPos").transform)
+        //    {
+        //        _spawnPosList.Add(transform);
+        //    }
+
+        //    _zombieList.Clear();
+        //    foreach (var zombieType in testLevel.Zombies)
+        //    {
+        //        for (int i = 0; i < zombieType.Count; i++)
+        //        {
+        //            _zombieList.Add(zombieType.ZombieData);
+        //        }
+        //    }
+
+        //    ZombieToSpawn = _zombieList.Count;
+        //    ZombieSpawned = 0;
+        //}
 
         private void Spawn()
         {
             if(_zombieList.Count > 0)
             {
-                var index = Random.Range(0, _zombieList.Count);
+                var spawnIndex = Random.Range(0, _spawnPosList.Count);
+                var spawnPos = _spawnPosList[spawnIndex].position + _spawnOffset;
 
-                //TODO: Make class ZombiePooling to spawn zombie
-                //ZombiePooling
+                var zombieIndex = Random.Range(0, _zombieList.Count);
+                ZombiePooling.Instance.SpawnZombie(_zombieList[zombieIndex].ZombieType, spawnPos);
                 ZombieSpawned++;
-                Debug.Log("spawn");
 
-                _zombieList.RemoveAt(index);
+                _zombieList.RemoveAt(zombieIndex);
             }
         }
 

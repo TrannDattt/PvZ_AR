@@ -9,9 +9,14 @@ namespace PlantsZombiesAR.Gameplays
         [SerializeField] private float _delayTime;
         [SerializeField] private float _intervalTime;
 
+        public void InitGenerator()
+        {
+
+        }
+
         private void Generate()
         {
-            var spawnPosY = _spawnRange.bounds.max.y;
+            var spawnPosY = _spawnRange.bounds.max.y - .1f;
             var spawnPosX = Random.Range(_spawnRange.bounds.min.x, _spawnRange.bounds.max.x);
             var spawnPosZ = Random.Range(_spawnRange.bounds.min.z, _spawnRange.bounds.max.z);
 

@@ -22,7 +22,7 @@ namespace PlantsZombiesAR.GameManager
             base.Enter();
 
             _shopManager.gameObject.SetActive(true);
-            _shopManager.InitShop();
+            _shopManager.InitShop(LevelManager.Instance.CurLevel);
 
             _timeCounter.gameObject.SetActive(true);
             _timeCounter.InitTimer(3);

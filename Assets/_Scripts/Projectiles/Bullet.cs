@@ -12,7 +12,7 @@ namespace PlantsZombiesAR.Projectiles
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Zombie"))
             {
-                var zombie = other.gameObject.GetComponent<ZombieController>();
+                var zombie = other.gameObject.GetComponentInParent<ZombieController>();
                 zombie.ChangeHealth(Damage);
 
                 DestroyProjectile();

@@ -1,4 +1,5 @@
 using PlantsZombiesAR.Enums;
+using PlantsZombiesAR.GameManager;
 using PlantsZombiesAR.Gameplays;
 using PlantsZombiesAR.Helpers;
 using PlantsZombiesAR.Plants;
@@ -18,9 +19,9 @@ namespace PlantsZombiesAR.UIElements
         public int SunCount { get; private set; }
         public ShopItem CurItem { get; private set; }
 
-        public void InitShop()
+        public void InitShop(LevelDataSO levelData)
         {
-            SunCount = 300;
+            SunCount = levelData.StartSun;
             CurItem = null;
 
             _sunCount.text = SunCount.ToString();

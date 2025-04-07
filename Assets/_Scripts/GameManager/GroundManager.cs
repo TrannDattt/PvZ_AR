@@ -57,6 +57,7 @@ namespace PlantsZombiesAR.GameManager
             if(Physics.Raycast(ray, out var hitSlot, Mathf.Infinity, LayerMask.GetMask("Slot")))
             {
                 UnselectSlot();
+                //Debug.Log(hitSlot.collider.gameObject);
                 SelectSlot(hitSlot.collider.GetComponentInChildren<PlantSlot>());
                 return;
             }

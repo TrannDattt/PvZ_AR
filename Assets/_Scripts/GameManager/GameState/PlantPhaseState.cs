@@ -24,7 +24,7 @@ namespace PlantsZombiesAR.GameManager
             _sunGenerator = SunGenerator.Instance;
             _sunGenerator.StartGenerate();
 
-            _zombieSpawner.InitSpawner();
+            _zombieSpawner.InitSpawner(LevelManager.Instance.CurLevel);
             _zombieSpawner.StartSpawn();
         }
 

@@ -16,7 +16,6 @@ namespace PlantsZombiesAR.Zombies
         public override void Enter()
         {
             base.Enter();
-            Debug.Log(StateKey);
         }
     }
 }
