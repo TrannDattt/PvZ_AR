@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5632629172831832317}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7548836878304687271}
   - component: {fileID: 1188318717305242744}
   - component: {fileID: 3317102009129280217}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sunflower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,8 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _idleClip: {fileID: 7400000, guid: 9ea1ae5fff33d514085dc2cc23444970, type: 2}
-  _skillClip: {fileID: 7400000, guid: ce23a7221ea4fb84aa2a1263f8ae84cc, type: 2}
-  _dieClip: {fileID: 0}
+  _skillClips:
+  - {fileID: 7400000, guid: ce23a7221ea4fb84aa2a1263f8ae84cc, type: 2}
+  _dieClip: {fileID: 7400000, guid: 9ea1ae5fff33d514085dc2cc23444970, type: 2}
 --- !u!114 &3317102009129280217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,15 +134,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6459f0d09e638f14095a559df4b6d582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skill:
-    rid: 5727635399631437825
+  _skillList:
+  - rid: 5727635620263100417
   references:
     version: 2
     RefIds:
-    - rid: 5727635399631437825
+    - rid: 5727635620263100417
       type: {class: SpawningSkill, ns: PlantsZombiesAR.Plants, asm: Assembly-CSharp}
       data:
-        CooldownTime: 7
+        SkillTime: 1
+        CooldownTime: 5
         ProjectilePreb: {fileID: 4177533226496686754, guid: 76dbe288d494e8145b65bb4744b035aa,
           type: 3}
         SpawnPos: {fileID: 5632629172831832317}
@@ -223,6 +225,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7577755417005640216, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -3445822289910815002, guid: 529ae0bd182e5864b97d799595b866ab,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -237,6 +244,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 7.274235
+      objectReference: {fileID: 0}
+    - target: {fileID: -3341638286560223030, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3133498875991405556, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -2126554692571397676, guid: 529ae0bd182e5864b97d799595b866ab,
         type: 3}
@@ -263,10 +280,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.8564259
       objectReference: {fileID: 0}
+    - target: {fileID: -810482289361733904, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 231876481260628317, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 529ae0bd182e5864b97d799595b866ab,
         type: 3}
       propertyPath: m_Name
       value: Sunflower
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3542862838422180360, guid: 529ae0bd182e5864b97d799595b866ab,
         type: 3}
@@ -282,6 +319,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 8.480082
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413239252716585677, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390157695516217700, guid: 529ae0bd182e5864b97d799595b866ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7431895222965789498, guid: 529ae0bd182e5864b97d799595b866ab,
         type: 3}

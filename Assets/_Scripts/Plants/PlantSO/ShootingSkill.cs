@@ -24,6 +24,11 @@ namespace PlantsZombiesAR.Plants
             return false;
         }
 
+        public override bool CheckCanUseSkill()
+        {
+            return base.CheckCanUseSkill() && CheckInRange();
+        }
+
         private void SpawnProjectile()
         {
             ProjectilePooling.Instance.SpawnProjectile(BulletPreb.ProjectileType, SpawnPos.position, BulletPreb.Speed * Vector3.forward);

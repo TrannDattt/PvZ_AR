@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3525387237295140046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2521710589131859121}
+  m_Layer: 16
+  m_Name: ExplodePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2521710589131859121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525387237295140046}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1378582018629239239}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4111093876999267405
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +42,7 @@ GameObject:
   - component: {fileID: 8843822929074605500}
   - component: {fileID: 4249796169906185543}
   - component: {fileID: 405192503830887117}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +125,7 @@ GameObject:
   - component: {fileID: 4538591011360304025}
   - component: {fileID: 7949885625515251387}
   - component: {fileID: 8498833986099606783}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +209,7 @@ GameObject:
   - component: {fileID: 1864294185142748489}
   - component: {fileID: 996231874864653739}
   - component: {fileID: 4966123310187383759}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +292,7 @@ GameObject:
   - component: {fileID: 6973065183678866768}
   - component: {fileID: 6393910389555522326}
   - component: {fileID: 4450598602910886164}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +378,7 @@ GameObject:
   - component: {fileID: 980761127918192705}
   - component: {fileID: 7855583951289125626}
   - component: {fileID: 5206819984963424057}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Potatomine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,6 +399,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1665497476047974463}
+  - {fileID: 2521710589131859121}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1426009351105753986
@@ -421,8 +453,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _idleClip: {fileID: 7400000, guid: 618821b9141d46741b8241a2911fddd1, type: 2}
-  _skillClip: {fileID: 7400000, guid: 2d516cc3d0fb05a4786660dde212dfc6, type: 2}
-  _dieClip: {fileID: 0}
+  _skillClips:
+  - {fileID: 7400000, guid: 380b502926f2ae342bf9e8260875f3dc, type: 2}
+  - {fileID: 7400000, guid: 2d516cc3d0fb05a4786660dde212dfc6, type: 2}
+  _dieClip: {fileID: 7400000, guid: 618821b9141d46741b8241a2911fddd1, type: 2}
 --- !u!114 &5206819984963424057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +469,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6459f0d09e638f14095a559df4b6d582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skill: {fileID: 0}
+  _skillList:
+  - rid: 5727635620263100418
+  - rid: 5727635620263100419
+  references:
+    version: 2
+    RefIds:
+    - rid: 5727635620263100418
+      type: {class: WaitingSkill, ns: PlantsZombiesAR.Plants, asm: Assembly-CSharp}
+      data:
+        SkillTime: 5
+        CooldownTime: 999
+    - rid: 5727635620263100419
+      type: {class: ExplodingSkill, ns: PlantsZombiesAR.Plants, asm: Assembly-CSharp}
+      data:
+        SkillTime: 1
+        CooldownTime: 999
+        ExplodePos: {fileID: 2521710589131859121}
+        ExplosionType: 3
+        RangeMult: {x: 1, y: 1, z: 1}
+        TriggerRange: 0.01
 --- !u!1001 &1195618135887796180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,10 +567,30 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5246043084920070811, guid: a3316d3dfa9bd8a4d9564df6457a4dea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -259972160606440404, guid: a3316d3dfa9bd8a4d9564df6457a4dea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a3316d3dfa9bd8a4d9564df6457a4dea,
         type: 3}
       propertyPath: m_Name
       value: batatamina
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a3316d3dfa9bd8a4d9564df6457a4dea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3694644960512988168, guid: a3316d3dfa9bd8a4d9564df6457a4dea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7876023681238672744, guid: a3316d3dfa9bd8a4d9564df6457a4dea,
         type: 3}

@@ -1,6 +1,7 @@
 using SerializeReferenceEditor;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PlantsZombiesAR.Plants
@@ -9,47 +10,65 @@ namespace PlantsZombiesAR.Plants
     {
         [SerializeReference]
         [SR]
-        [SerializeField] private PlantSkill _skill;
+        [SerializeField] private List<PlantSkill> _skillList;
 
-        public void Init()
+        public PlantSkill ReadySkill { get; private set; }
+
+        private PlantController _plant;
+
+        public void Init(PlantController plant)
         {
-            _skill.Init();
+            _plant = plant;
+            ReadySkill = null;
+            _skillList.ForEach((skill) => skill.Init());
+        }
+
+        public int GetSkillIndex(){
+            if(ReadySkill == null){
+                return -1;
+            }
+
+            return _skillList.IndexOf(ReadySkill);
         }
 
         public bool CheckCanUseSkill()
         {
-            if (_skill == null)
+            if (_skillList.Count == 0)
             {
                 return false;
             }
 
-            switch (_skill)
-            {
-                case ShootingSkill shootingSkill:
-                    return shootingSkill.CheckInRange() && !shootingSkill.IsInCD;
-
-                case SpawningSkill spawningSkill:
-                    return !spawningSkill.IsInCD;
-
-                default:
-                    return !_skill.IsInCD;
+            foreach(var skill in _skillList){
+                if(skill.CheckCanUseSkill()){
+                    if(ReadySkill != skill){
+                        ReadySkill = skill;
+                        ReadySkill.SetPlant(_plant);
+                    }
+                    return true;
+                }
             }
+
+            return false;
         }
 
         public void DoSkill()
         {
-            _skill.DoSkill();
-            CooldownSkill();
+            ReadySkill.DoSkill();
+            CooldownSkill(ReadySkill);
         }
 
-        public void CooldownSkill()
+        public void CooldownSkill(PlantSkill skill)
         {
+            if(skill.CooldownTime >= 999){
+                return;
+            }
+
             StartCoroutine(Cooldown());
 
             IEnumerator Cooldown()
             {
-                yield return new WaitForSeconds(_skill.CooldownTime);
-                _skill.FinishCD();
+                yield return new WaitForSeconds(skill.CooldownTime);
+                skill.FinishCD();
             }
         }
     }

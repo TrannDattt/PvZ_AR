@@ -1,3 +1,4 @@
+using UnityEngine;
 using static PlantsZombiesAR.Zombies.ZombieSM;
 
 namespace PlantsZombiesAR.Zombies

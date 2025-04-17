@@ -9,22 +9,26 @@ namespace PlantsZombiesAR.Plants
     public abstract class BasePlantState : BaseState<EState>
     {
         protected PlantController _plant;
-        protected AnimationClip _clip;
+        protected AnimationClip[] _clips;
 
-        public BasePlantState(EState stateKey, PlantController plant, AnimationClip clip) : base(stateKey)
+        public BasePlantState(EState stateKey, PlantController plant, params AnimationClip[] clips) : base(stateKey)
         {
             _plant = plant;
-            _clip = clip;
+            _clips = clips;
+        }
+
+        public virtual void PlayAnim(){
+            if(_clips.Length != 0){
+                _plant.Animator.Play(_clips[0].name);
+            }
+
         }
 
         public override void Enter()
         {
             base.Enter();
 
-            if (_clip != null)
-            {
-                _plant.Animator.Play(_clip.name);
-            }
+            PlayAnim();
             //Debug.Log(StateKey);
         }
     }

@@ -25,7 +25,10 @@ namespace PlantsZombiesAR.UIElements
 
         public override void InitMenu()
         {
-            //_itemList = GetComponentsInChildren<ShopItem>(false).ToList();
+            foreach(Transform item in _selectMenuParent.transform){
+                Destroy(item.gameObject);
+            }
+            
             GetAllItems();
             _indicatorDict.Clear();
 
@@ -45,7 +48,7 @@ namespace PlantsZombiesAR.UIElements
                 Debug.Log(null);
                 return;
             }
-            //Debug.Log(itemInfoList.Length);
+
             for (int i = 0; i < 10; i++)
             {
                 var index = Mathf.Min(i, itemInfoList.Length - 1);

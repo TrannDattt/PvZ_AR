@@ -22,7 +22,6 @@ namespace PlantsZombiesAR.GameManager
             {
                 _foundPlane = true;
                 _findPlanePanel.FinishFindPlane();
-                _groundManager.ActivePlane();
             }
         }
 

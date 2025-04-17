@@ -11,9 +11,21 @@ namespace PlantsZombiesAR.Gameplays
     {
         [SerializeField] private PlantController _peashooterPreb;
         [SerializeField] private PlantController _sunflowerPreb;
+        [SerializeField] private PlantController _wallnutPreb;
+        [SerializeField] private PlantController _potatominePreb;
+
+        [SerializeField] private Transform _spawnedPlantPos;
 
         private Queue<PlantController> _peashooterQueue = new();
         private Queue<PlantController> _sunflowerQueue = new();
+        private Queue<PlantController> _wallnutQueue = new();
+        private Queue<PlantController> _potatomineQueue = new();
+
+        public void InitPool(){
+            _peashooterQueue.Clear();
+            _sunflowerQueue.Clear();
+            _wallnutQueue.Clear();
+        }
 
         public PlantController SpawnPlant(EPlant plant, Vector3 spawnPos)
         {
@@ -24,6 +36,12 @@ namespace PlantsZombiesAR.Gameplays
 
                 case EPlant.Sunflower:
                     return GetPlantFromPool(_sunflowerPreb, _sunflowerQueue, spawnPos);
+
+                case EPlant.Wallnut:
+                    return GetPlantFromPool(_wallnutPreb, _wallnutQueue, spawnPos);
+
+                case EPlant.Potatomine:
+                    return GetPlantFromPool(_potatominePreb, _potatomineQueue, spawnPos);
 
                 default:
                     return null;
@@ -42,6 +60,14 @@ namespace PlantsZombiesAR.Gameplays
                     _sunflowerQueue.Enqueue(plant);
                     break;
 
+                case EPlant.Wallnut:
+                    _wallnutQueue.Enqueue(plant);
+                    break;
+
+                case EPlant.Potatomine:
+                    _potatomineQueue.Enqueue(plant);
+                    break;
+
                 default:
                     break;
             }
@@ -53,6 +79,7 @@ namespace PlantsZombiesAR.Gameplays
             {
                 var newPlant = Instantiate(plantPreb, spawnPos, Quaternion.identity);
                 newPlant.Init();
+                newPlant.transform.SetParent(_spawnedPlantPos);
                 return newPlant;
             }
 

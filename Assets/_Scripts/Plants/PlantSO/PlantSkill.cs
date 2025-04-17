@@ -8,13 +8,24 @@ namespace PlantsZombiesAR.Plants
     [Serializable]
     public abstract class PlantSkill
     {
+        public float SkillTime = 1;
         public float CooldownTime;
 
         public bool IsInCD { get; private set; }
 
-        public void Init()
+        protected PlantController _plant;
+
+        public virtual void Init()
         {
             IsInCD = false;
+        }
+
+        public void SetPlant(PlantController plant){
+            _plant = plant;
+        }
+
+        public virtual bool CheckCanUseSkill(){
+            return !IsInCD;
         }
 
         public virtual void DoSkill()

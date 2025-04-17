@@ -1,6 +1,7 @@
 using PlantsZombiesAR.GameManager;
 using PlantsZombiesAR.Helpers;
 using PlantsZombiesAR.Zombies;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ namespace PlantsZombiesAR.Gameplays
 
         private List<Transform> _spawnPosList = new();
         private List<StatSO> _zombieList = new();
+
+        public event Action OnZombieSpawned;
 
         public void InitSpawner(LevelDataSO levelData)
         {
@@ -38,39 +41,19 @@ namespace PlantsZombiesAR.Gameplays
             ZombieSpawned = 0;
         }
 
-        //public void InitSpawner()
-        //{
-        //    _spawnPosList.Clear();
-        //    foreach (Transform transform in GroundManager.Instance.Ground.transform.Find("PlantPos").transform)
-        //    {
-        //        _spawnPosList.Add(transform);
-        //    }
-
-        //    _zombieList.Clear();
-        //    foreach (var zombieType in testLevel.Zombies)
-        //    {
-        //        for (int i = 0; i < zombieType.Count; i++)
-        //        {
-        //            _zombieList.Add(zombieType.ZombieData);
-        //        }
-        //    }
-
-        //    ZombieToSpawn = _zombieList.Count;
-        //    ZombieSpawned = 0;
-        //}
-
         private void Spawn()
         {
             if(_zombieList.Count > 0)
             {
-                var spawnIndex = Random.Range(0, _spawnPosList.Count);
+                var spawnIndex = UnityEngine.Random.Range(0, _spawnPosList.Count);
                 var spawnPos = _spawnPosList[spawnIndex].position + _spawnOffset;
 
-                var zombieIndex = Random.Range(0, _zombieList.Count);
+                var zombieIndex = UnityEngine.Random.Range(0, _zombieList.Count);
                 ZombiePooling.Instance.SpawnZombie(_zombieList[zombieIndex].ZombieType, spawnPos);
                 ZombieSpawned++;
 
                 _zombieList.RemoveAt(zombieIndex);
+                OnZombieSpawned?.Invoke();
             }
         }
 

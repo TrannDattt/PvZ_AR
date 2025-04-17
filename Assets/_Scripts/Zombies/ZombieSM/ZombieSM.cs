@@ -27,5 +27,11 @@ namespace PlantsZombiesAR.Zombies
 
             ChangeState(EState.Run);
         }
+
+        protected override void Update()
+        {
+            base.Update();
+            Debug.Log(_curState.StateKey);
+        }
     }
 }

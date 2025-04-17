@@ -6,6 +6,7 @@ namespace PlantsZombiesAR.GameManager
     public class SelectPhaseState : BaseGameState
     {
         private SelectPlantMenuManager _selectPlantMenu => SelectPlantMenuManager.Instance;
+        private GroundManager _groundManager => GroundManager.Instance;
 
         public SelectPhaseState(EGameState stateKey) : base(stateKey)
         {
@@ -19,6 +20,8 @@ namespace PlantsZombiesAR.GameManager
         public override void Enter()
         {
             base.Enter();
+
+            _groundManager.InitPlane();
 
             _selectPlantMenu.gameObject.SetActive(true);
             _selectPlantMenu.InitMenu();

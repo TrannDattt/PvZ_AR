@@ -88,8 +88,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _idleClip: {fileID: 7400000, guid: 1da24cbe5f1682b4996de15c9bdb1ca8, type: 2}
-  _skillClip: {fileID: 7400000, guid: c44669bf694ccb54cb5efe9e3acbee5a, type: 2}
-  _dieClip: {fileID: 0}
+  _skillClips:
+  - {fileID: 7400000, guid: c44669bf694ccb54cb5efe9e3acbee5a, type: 2}
+  _dieClip: {fileID: 7400000, guid: 1da24cbe5f1682b4996de15c9bdb1ca8, type: 2}
 --- !u!114 &2002779989146226331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,14 +103,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6459f0d09e638f14095a559df4b6d582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skill:
-    rid: 5727635399631437824
+  _skillList:
+  - rid: 5727635620263100416
   references:
     version: 2
     RefIds:
-    - rid: 5727635399631437824
+    - rid: 5727635620263100416
       type: {class: ShootingSkill, ns: PlantsZombiesAR.Plants, asm: Assembly-CSharp}
       data:
+        SkillTime: 1
         CooldownTime: 1.5
         BulletPreb: {fileID: 5994840958296969218, guid: 68a4cc7f1d9a0a147804a4608798fa1d,
           type: 3}
@@ -140,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 8397128296802293430}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: 0.03}
+  m_LocalPosition: {x: 0, y: 0.05, z: -0.007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

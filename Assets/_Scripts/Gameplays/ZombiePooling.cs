@@ -9,8 +9,13 @@ namespace PlantsZombiesAR.Gameplays
     public class ZombiePooling : Singleton<ZombiePooling>
     {
         [SerializeField] private ZombieController _norZomPreb;
+        [SerializeField] private Transform _spawnedZombiePos;
 
         private Queue<ZombieController> _norZomQueue = new();
+
+        public void InitPool(){
+            _norZomQueue.Clear();
+        }
 
         public ZombieController SpawnZombie(EZombie zombie, Vector3 spawnPos)
         {
@@ -43,6 +48,7 @@ namespace PlantsZombiesAR.Gameplays
             {
                 var newZombie = Instantiate(zombiePreb, spawnPos, Quaternion.identity);
                 newZombie.Init();
+                newZombie.transform.SetParent(_spawnedZombiePos);
                 return newZombie;
             }
 

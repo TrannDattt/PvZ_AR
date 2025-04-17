@@ -5,5 +5,6 @@ namespace PlantsZombiesAR.Enums
         None,
         Pea,
         Sun,
+        Explosion,
     }
 }

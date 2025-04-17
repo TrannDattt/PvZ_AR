@@ -15,4 +15,4 @@ MonoBehaviour:
   PlantData: {fileID: 11400000, guid: e746c2a972b7bf941b9e6c113ccc93ff, type: 2}
   Image: {fileID: 21300000, guid: 1fa92011b9d40dd458d275c3cf7abd25, type: 3}
   Price: 50
-  BuyCooldown: 7
+  BuyCooldown: 5

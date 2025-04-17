@@ -1,3 +1,5 @@
+using PlantsZombiesAR.Enums;
+using PlantsZombiesAR.Gameplays;
 using SerializeReferenceEditor;
 using System.Collections;
 using UnityEngine;
@@ -10,17 +12,14 @@ namespace PlantsZombiesAR.Zombies
         [SR]
         [SerializeField] private ZombieSkill _skill;
 
-        public GameObject Target {  get; private set; }
-
         public void Init()
         {
-            _skill.Init();
-            Target = null;
+            _skill.Init(this);
         }
 
         public bool CheckCanUseSkill()
         {
-            if (_skill != null)
+            if (_skill == null)
             {
                 return false;
             }
@@ -49,6 +48,20 @@ namespace PlantsZombiesAR.Zombies
             {
                 yield return new WaitForSeconds(_skill.CooldownTime);
                 _skill.FinishCD();
+            }
+        }
+
+        public void ReturnSkillParticle(ParticleSystem particle, EParticle particleType)
+        {
+            if (particle == null) return;
+
+            StartCoroutine(WaitParticleFinished());
+
+            IEnumerator WaitParticleFinished()
+            {
+                yield return new WaitForSeconds(particle.main.duration);
+                particle.gameObject.SetActive(false);   
+                ParticlePooling.Instance.RemoveParticle(particle, particleType);
             }
         }
     }

@@ -13,5 +13,18 @@ namespace PlantsZombiesAR.GameManager
         {
             StateMachine.Init();
         }
+
+        public void StartLevel(LevelDataSO levelData){
+            LevelManager.Instance.GetLevelData(levelData);
+            StateMachine.ChoseNextState(GameflowSM.EGameState.FindPlanePhase);
+        }
+
+        public void BackToMainMenu(){
+            StateMachine.ChoseNextState(GameflowSM.EGameState.WaitingPhase);
+        }
+
+        public void RestartLevel(){
+            StateMachine.ChoseNextState(GameflowSM.EGameState.FindPlanePhase);
+        }
     }
 }

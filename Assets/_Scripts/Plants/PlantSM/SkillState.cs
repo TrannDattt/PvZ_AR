@@ -9,14 +9,15 @@ namespace PlantsZombiesAR.Plants
     {
         private bool _isFinished;
 
-        public SkillState(EState stateKey, PlantController plant, AnimationClip clip) : base(stateKey, plant, clip)
+        public SkillState(EState stateKey, PlantController plant, params AnimationClip[] clips) : base(stateKey, plant, clips)
         {
         }
 
         public override void Do()
         {
-            if(PlayedTime > 1)
+            if(PlayedTime > _plant.SkillController.ReadySkill.SkillTime)
             {
+                // Debug.Log(_plant.SkillController.ReadySkill.SkillTime);
                 _isFinished = true;
             }
         }
@@ -24,7 +25,21 @@ namespace PlantsZombiesAR.Plants
         public override void Enter()
         {
             base.Enter();
+
             _isFinished = false;
+        }
+
+        public override void PlayAnim()
+        {
+            if(_clips.Length == 0){
+                return;
+            }
+
+            var clipIndex = _plant.SkillController.GetSkillIndex();
+            if(clipIndex >= 0){
+                _plant.Animator.Play(_clips[clipIndex].name);
+                // Debug.Log(_clips[clipIndex].name);
+            }
         }
 
         public override void Exit()

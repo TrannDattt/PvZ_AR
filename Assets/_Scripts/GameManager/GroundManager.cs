@@ -3,10 +3,12 @@ using PlantsZombiesAR.Helpers;
 using PlantsZombiesAR.UIElements;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 namespace PlantsZombiesAR.GameManager
 {
@@ -14,14 +16,18 @@ namespace PlantsZombiesAR.GameManager
     {
         [SerializeField] private ARPlaneManager _arPlaneManager;
         [SerializeField] private ARRaycastManager _arRaycastManager;
-
         [SerializeField] private GameObject _ingameGroundPreb;
+        [SerializeField] private Transform _plantSpawnPos;
+        [SerializeField] private Transform _zombieSpawnPos;
+        [SerializeField] private Transform _projectileSpawnPos;
 
         public GameObject Ground { get; private set; }
 
         private Camera _camera;
 
         public PlantSlot CurSlot { get; private set; }
+
+        private List<PlantSlot> _slotList = new();
 
         public void SelectSlot(PlantSlot slot)
         {
@@ -41,14 +47,43 @@ namespace PlantsZombiesAR.GameManager
             Ground.SetActive(false);
         }
 
-        public void ActivePlane()
+        private void FindAllPlantSlots(){
+            _slotList.Clear();
+
+            _slotList = Ground.GetComponentsInChildren<PlantSlot>().ToList();
+        }
+
+        public void InitPlane()
         {
             Ground.SetActive(true);
+            CurSlot = null;
+
+            FindAllPlantSlots();
+            _slotList.ForEach((slot) => {
+                slot.ChangeToEmpty();
+            });
         }
 
         public void DeactivePlane()
         {
-            Ground.SetActive(false);
+            if(Ground){
+                ClearGround();
+                Ground.SetActive(false);
+            }
+        }
+
+        public void ClearGround(){
+            foreach(Transform plant in _plantSpawnPos){
+                Destroy(plant.gameObject);
+            }
+
+            foreach(Transform zombie in _zombieSpawnPos){
+                Destroy(zombie.gameObject);
+            }
+
+            foreach(Transform projectile in _projectileSpawnPos){
+                Destroy(projectile.gameObject);
+            }
         }
 
         public void UpdateSelectedSlot(Vector2 touchPos)
@@ -57,8 +92,10 @@ namespace PlantsZombiesAR.GameManager
             if(Physics.Raycast(ray, out var hitSlot, Mathf.Infinity, LayerMask.GetMask("Slot")))
             {
                 UnselectSlot();
-                //Debug.Log(hitSlot.collider.gameObject);
-                SelectSlot(hitSlot.collider.GetComponentInChildren<PlantSlot>());
+                var slot = hitSlot.collider.GetComponentInChildren<PlantSlot>();
+                if(!slot.HasPlant){
+                    SelectSlot(slot);
+                }
                 return;
             }
 

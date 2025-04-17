@@ -9,5 +9,7 @@ namespace PlantsZombiesAR.Enums
         None,
         Peashooter,
         Sunflower,
+        Potatomine,
+        Wallnut,
     }
 }

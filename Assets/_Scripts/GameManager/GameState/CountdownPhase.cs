@@ -5,7 +5,6 @@ namespace PlantsZombiesAR.GameManager
 {
     public class CountdownPhase : BaseGameState
     {
-        private ShopManager _shopManager => ShopManager.Instance;
         private TimeCounter _timeCounter => TimeCounter.Instance;
 
         public CountdownPhase(EGameState stateKey) : base(stateKey)
@@ -20,9 +19,6 @@ namespace PlantsZombiesAR.GameManager
         public override void Enter()
         {
             base.Enter();
-
-            _shopManager.gameObject.SetActive(true);
-            _shopManager.InitShop(LevelManager.Instance.CurLevel);
 
             _timeCounter.gameObject.SetActive(true);
             _timeCounter.InitTimer(3);

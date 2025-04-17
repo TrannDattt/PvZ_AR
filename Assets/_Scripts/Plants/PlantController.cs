@@ -19,12 +19,13 @@ namespace PlantsZombiesAR.Plants
             gameObject.SetActive(true);
             CurHealth = Stat.Health;
             StateMachine.Init(this);
-            SkillController.Init();
+            SkillController.Init(this);
         }
 
         public void ChangeHealth(int amount)
         {
             CurHealth = Mathf.Clamp(CurHealth - amount, 0, Stat.Health);
+            Debug.Log(amount);
         }
 
         public void DestroyPlant()

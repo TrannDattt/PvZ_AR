@@ -31,7 +31,7 @@ namespace PlantsZombiesAR.Projectiles
             }
         }
 
-        public void DestroyProjectile()
+        public virtual void DestroyProjectile()
         {
             _isDestroyed = true;
             Rigidbody.velocity = Vector3.zero;

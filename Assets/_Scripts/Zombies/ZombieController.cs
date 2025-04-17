@@ -1,4 +1,5 @@
 using PlantsZombiesAR.Gameplays;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,13 +32,14 @@ namespace PlantsZombiesAR.Zombies
         public void DestroyZombie()
         {
             gameObject.SetActive(false);
+            ZombieDiedCounter.Increase();
 
-            //PlantPooling.Instance.RemovePlant(this);
+            ZombiePooling.Instance.RemoveZombie(this);
         }
 
-        private void Start()
-        {
-            Init();
-        }
+        //private void Start()
+        //{
+        //    Init();
+        //}
     }
 }

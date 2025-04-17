@@ -12,8 +12,11 @@ namespace PlantsZombiesAR.Zombies
 
         public bool IsInCD { get; private set; }
 
-        public void Init()
+        protected SkillController _skillController;
+
+        public virtual void Init(SkillController skillController)
         {
+            _skillController = skillController;
             IsInCD = false;
         }
 

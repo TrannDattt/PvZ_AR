@@ -9,12 +9,14 @@ namespace PlantsZombiesAR.GameManager
     {
         public enum EGameState
         {
+            None,
             WaitingPhase,
             FindPlanePhase,
             SelectPhase,
             CountdownPhase,
             PlantPhase,
-            FinishPhase,
+            LevelLosePhase,
+            LevelWinPhase,
         }
 
         public EGameState CurGameState => _curState.StateKey;
@@ -26,11 +28,14 @@ namespace PlantsZombiesAR.GameManager
             _stateDict.Add(EGameState.SelectPhase, new SelectPhaseState(EGameState.SelectPhase));
             _stateDict.Add(EGameState.CountdownPhase, new CountdownPhase(EGameState.CountdownPhase));
             _stateDict.Add(EGameState.PlantPhase, new PlantPhaseState(EGameState.PlantPhase));
-            _stateDict.Add(EGameState.FinishPhase, new FinishPhaseState(EGameState.FinishPhase));
+            _stateDict.Add(EGameState.LevelLosePhase, new LevelLosePhaseState(EGameState.LevelLosePhase));
+            _stateDict.Add(EGameState.LevelWinPhase, new LevelWinPhaseState(EGameState.LevelWinPhase));
 
             ChangeState(EGameState.WaitingPhase);
         }
 
         public void FinishCurState() => (_curState as BaseGameState).FinishState();
+
+        public void ChoseNextState(EGameState state) => ChangeState(state);
     }
 }
