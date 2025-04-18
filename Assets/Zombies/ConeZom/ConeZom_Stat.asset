@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba5d9ceac809dc4ab6532f1f16c8220, type: 3}
-  m_Name: Level_01
+  m_Script: {fileID: 11500000, guid: 6dea9d79873063642877d138c8dec485, type: 3}
+  m_Name: ConeZom_Stat
   m_EditorClassIdentifier: 
-  LevelID: Daytime_01
-  StartSun: 0
-  Zombies:
-  - ZombieData: {fileID: 11400000, guid: 7025e0a3468762542ba9eaabfa2355fa, type: 2}
-    Count: 10
+  Health: 150
+  Speed: 0.05
+  ZombieType: 2

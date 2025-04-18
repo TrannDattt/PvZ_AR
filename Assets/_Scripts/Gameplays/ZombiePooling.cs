@@ -9,12 +9,18 @@ namespace PlantsZombiesAR.Gameplays
     public class ZombiePooling : Singleton<ZombiePooling>
     {
         [SerializeField] private ZombieController _norZomPreb;
+        [SerializeField] private ZombieController _coneZomPreb;
+        [SerializeField] private ZombieController _bucketZomPreb;
         [SerializeField] private Transform _spawnedZombiePos;
 
         private Queue<ZombieController> _norZomQueue = new();
+        private Queue<ZombieController> _coneZomQueue = new();
+        private Queue<ZombieController> _bucketZomQueue = new();
 
         public void InitPool(){
             _norZomQueue.Clear();
+            _coneZomQueue.Clear();
+            _bucketZomQueue.Clear();
         }
 
         public ZombieController SpawnZombie(EZombie zombie, Vector3 spawnPos)
@@ -23,6 +29,12 @@ namespace PlantsZombiesAR.Gameplays
             {
                 case EZombie.NorZomb:
                     return GetZombieFromPool(_norZomPreb, _norZomQueue, spawnPos);
+
+                case EZombie.ConeZomb:
+                    return GetZombieFromPool(_coneZomPreb, _coneZomQueue, spawnPos);
+
+                case EZombie.BucketZomb:
+                    return GetZombieFromPool(_bucketZomPreb, _bucketZomQueue, spawnPos);
 
                 default:
                     return null;
@@ -35,6 +47,14 @@ namespace PlantsZombiesAR.Gameplays
             {
                 case EZombie.NorZomb:
                     _norZomQueue.Enqueue(zommbie);
+                    break;
+
+                case EZombie.ConeZomb:
+                    _coneZomQueue.Enqueue(zommbie);
+                    break;
+
+                case EZombie.BucketZomb:
+                    _bucketZomQueue.Enqueue(zommbie);
                     break;
 
                 default:

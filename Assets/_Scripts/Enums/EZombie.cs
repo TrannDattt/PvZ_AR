@@ -4,5 +4,7 @@ namespace PlantsZombiesAR.Enums
     {
         None,
         NorZomb,
+        ConeZomb,
+        BucketZomb,
     }
 }

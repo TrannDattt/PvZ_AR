@@ -43,6 +43,11 @@ namespace PlantsZombiesAR.Zombies
 
         public override EState GetNextState()
         {
+            if (_zombie.CurHealth <= 0)
+            {
+                return EState.Die;
+            }
+            
             if (_isFinished)
             {
                 if (_zombie.SkillController.CheckCanUseSkill())

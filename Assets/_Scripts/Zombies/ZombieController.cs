@@ -28,7 +28,7 @@ namespace PlantsZombiesAR.Zombies
         public void ChangeHealth(int amount)
         {
             CurHealth = Mathf.Clamp(CurHealth - amount, 0, Stat.Health);
-            Debug.Log(amount);
+            // Debug.Log(amount);
         }
 
         public void DestroyZombie()

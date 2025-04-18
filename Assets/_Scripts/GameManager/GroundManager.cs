@@ -22,6 +22,7 @@ namespace PlantsZombiesAR.GameManager
         [SerializeField] private Transform _projectileSpawnPos;
 
         public GameObject Ground { get; private set; }
+        public EndPosReachChecker EndPosChecker { get; private set; }
 
         private Camera _camera;
 
@@ -44,6 +45,12 @@ namespace PlantsZombiesAR.GameManager
         private void PlaceGroundOnPlane(ARPlane plane)
         {
             Ground = Instantiate(_ingameGroundPreb, plane.transform.position, Quaternion.identity);
+            // EndPos = Ground.transform.Find("EndPos").transform;
+            EndPosChecker = Ground.GetComponentInChildren<EndPosReachChecker>();
+            if(EndPosChecker == null){
+                Debug.LogError("EndPos not found!");
+                return;
+            }
             Ground.SetActive(false);
         }
 
@@ -56,6 +63,7 @@ namespace PlantsZombiesAR.GameManager
         public void InitPlane()
         {
             Ground.SetActive(true);
+            EndPosChecker.InitChecker();
             CurSlot = null;
 
             FindAllPlantSlots();

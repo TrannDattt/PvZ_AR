@@ -64,6 +64,8 @@ namespace PlantsZombiesAR.UIElements
             return null;
         }
 
+        // TODO: Empty slot when plant is destroyed
+
         public void PlacePlant(StatSO boughtPlant, PlantSlot slot)
         {
             if (!slot.HasPlant && boughtPlant != null && boughtPlant.PlantType != EPlant.None)

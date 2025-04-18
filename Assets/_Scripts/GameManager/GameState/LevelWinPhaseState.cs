@@ -1,3 +1,4 @@
+using PlantsZombiesAR.UIElements;
 using UnityEngine;
 using static PlantsZombiesAR.GameManager.GameflowSM;
 
@@ -5,6 +6,8 @@ namespace PlantsZombiesAR.GameManager
 {
     public class LevelWinPhaseState : BaseGameState
     {
+        private LevelWinMenu _winMenu = LevelWinMenu.Instance;
+
         public LevelWinPhaseState(EGameState stateKey) : base(stateKey)
         {
         }
@@ -17,6 +20,9 @@ namespace PlantsZombiesAR.GameManager
         public override void Enter()
         {
             base.Enter();
+
+            _winMenu.InitMenu();
+            _winMenu.MenuEnter();
         }
 
         public override void Exit()
@@ -24,6 +30,8 @@ namespace PlantsZombiesAR.GameManager
             base.Exit();
 
             Time.timeScale = 1;
+
+            _winMenu.MenuExit();
         }
 
         public override void FixedDo()

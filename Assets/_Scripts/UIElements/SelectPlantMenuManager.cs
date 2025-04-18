@@ -23,6 +23,8 @@ namespace PlantsZombiesAR.UIElements
         //private List<ShopItem> _itemList = new();
         private Dictionary<GameObject, ShopItem> _indicatorDict = new();
 
+        private const string PATH_TO_SHOP_ITEM_FOLDER = "ShopItemSO";
+
         public override void InitMenu()
         {
             foreach(Transform item in _selectMenuParent.transform){
@@ -42,7 +44,7 @@ namespace PlantsZombiesAR.UIElements
 
         private void GetAllItems()
         {
-            ShopItemSO[] itemInfoList = Resources.LoadAll<ShopItemSO>("ShopItemSO");
+            ShopItemSO[] itemInfoList = Resources.LoadAll<ShopItemSO>(PATH_TO_SHOP_ITEM_FOLDER);
             if(itemInfoList.Length == 0)
             {
                 Debug.Log(null);

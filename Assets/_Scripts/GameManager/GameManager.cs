@@ -1,6 +1,5 @@
 using PlantsZombiesAR.Helpers;
-using PlantsZombiesAR.UIElements;
-using System;
+using PlantsZombiesAR.Enums;
 using UnityEngine;
 
 namespace PlantsZombiesAR.GameManager
@@ -14,9 +13,17 @@ namespace PlantsZombiesAR.GameManager
             StateMachine.Init();
         }
 
-        public void StartLevel(LevelDataSO levelData){
-            LevelManager.Instance.GetLevelData(levelData);
+        private void StartLevel(ELevelType levelType){
+            LevelManager.Instance.GetLevelData(levelType);
             StateMachine.ChoseNextState(GameflowSM.EGameState.FindPlanePhase);
+        }
+
+        public void StartTestLevel(){
+            StartLevel(ELevelType.Test);
+        }
+
+        public void StartDayTimeLevel(){
+            StartLevel(ELevelType.DayTime);
         }
 
         public void BackToMainMenu(){
