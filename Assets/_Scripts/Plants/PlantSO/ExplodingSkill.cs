@@ -31,6 +31,7 @@ namespace PlantsZombiesAR.Plants
 
         public override bool CheckCanUseSkill()
         {
+            // Debug.Log($"Check can use: {base.CheckCanUseSkill()}, In range: {CheckInRange()}");
             return base.CheckCanUseSkill() && CheckInRange();
         }
 
@@ -43,6 +44,7 @@ namespace PlantsZombiesAR.Plants
         public override void DoSkill()
         {
             base.DoSkill();
+            // Debug.Log("Explode");
             Explode();
         }
     }

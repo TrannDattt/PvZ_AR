@@ -39,7 +39,7 @@ namespace PlantsZombiesAR.Zombies
         {
             base.DoSkill();
 
-            _target.ChangeHealth(Damage);
+            _target?.ChangeHealth(Damage);
 
             var particle = ParticlePooling.Instance.SpawnParticle(ParticleType, AttackPos);
             particle.Play();

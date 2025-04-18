@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static PlantsZombiesAR.Zombies.ZombieSM;
 
 namespace PlantsZombiesAR.Zombies
@@ -7,7 +8,7 @@ namespace PlantsZombiesAR.Zombies
     {
         private bool _isFinished;
 
-        public SkillState(EState stateKey, ZombieController zombie) : base(stateKey, zombie)
+        public SkillState(EState stateKey, ZombieController zombie, params AnimationClip[] anim) : base(stateKey, zombie, anim)
         {
         }
 
@@ -15,7 +16,7 @@ namespace PlantsZombiesAR.Zombies
         {
             base.Do();
 
-            if(PlayedTime > 1)
+            if(PlayedTime > _zombie.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.length)
             {
                 _isFinished = true;
             }
@@ -44,6 +45,13 @@ namespace PlantsZombiesAR.Zombies
         {
             if (_isFinished)
             {
+                if (_zombie.SkillController.CheckCanUseSkill())
+                {
+                    Exit();
+                    Enter();
+                    return StateKey;
+                }
+
                 return EState.Run;
             }
 

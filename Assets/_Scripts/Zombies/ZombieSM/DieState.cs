@@ -1,3 +1,4 @@
+using UnityEngine;
 using static PlantsZombiesAR.Zombies.ZombieSM;
 
 namespace PlantsZombiesAR.Zombies
@@ -6,7 +7,7 @@ namespace PlantsZombiesAR.Zombies
     {
         private bool _isDied;
 
-        public DieState(EState stateKey, ZombieController zombie) : base(stateKey, zombie)
+        public DieState(EState stateKey, ZombieController zombie, params AnimationClip[] anim) : base(stateKey, zombie, anim)
         {
             _isDied = false;
         }

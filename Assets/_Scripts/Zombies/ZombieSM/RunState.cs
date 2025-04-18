@@ -5,7 +5,7 @@ namespace PlantsZombiesAR.Zombies
 {
     public class RunState : BaseZombieState
     {
-        public RunState(EState stateKey, ZombieController zombie) : base(stateKey, zombie)
+        public RunState(EState stateKey, ZombieController zombie, params AnimationClip[] anim) : base(stateKey, zombie, anim)
         {
         }
 

@@ -64,6 +64,7 @@ namespace PlantsZombiesAR.GameManager
 
         public override EGameState GetNextState()
         {
+            // TODO: Change to win if all zombies are dead, change to lose if zombie reached the end
             if (ZombieDiedCounter.Count == _zombieSpawner.ZombieToSpawn)
             {
                 return EGameState.LevelLosePhase;

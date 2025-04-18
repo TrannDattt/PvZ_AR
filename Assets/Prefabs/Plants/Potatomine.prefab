@@ -488,7 +488,7 @@ MonoBehaviour:
         ExplodePos: {fileID: 2521710589131859121}
         ExplosionType: 3
         RangeMult: {x: 1, y: 1, z: 1}
-        TriggerRange: 0.01
+        TriggerRange: 0.1
 --- !u!1001 &1195618135887796180
 PrefabInstance:
   m_ObjectHideFlags: 0

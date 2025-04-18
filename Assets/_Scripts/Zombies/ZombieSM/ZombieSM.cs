@@ -17,21 +17,17 @@ namespace PlantsZombiesAR.Zombies
         [SerializeField] private AnimationClip _skillClip;
         [SerializeField] private AnimationClip _dieClip;
 
+        private Animator _animator;
+
         public void Init(ZombieController zombie)
         {
             _stateDict.Clear();
 
-            _stateDict.Add(EState.Run, new RunState(EState.Run, zombie));
-            _stateDict.Add(EState.Skill, new SkillState(EState.Skill, zombie));
-            _stateDict.Add(EState.Die, new DieState(EState.Die, zombie));
+            _stateDict.Add(EState.Run, new RunState(EState.Run, zombie, _runClip));
+            _stateDict.Add(EState.Skill, new SkillState(EState.Skill, zombie, _skillClip));
+            _stateDict.Add(EState.Die, new DieState(EState.Die, zombie, _dieClip));
 
             ChangeState(EState.Run);
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-            Debug.Log(_curState.StateKey);
         }
     }
 }

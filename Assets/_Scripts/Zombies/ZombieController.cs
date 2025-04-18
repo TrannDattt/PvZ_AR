@@ -11,6 +11,7 @@ namespace PlantsZombiesAR.Zombies
         [field: SerializeField] public ZombieSM StateMachine { get; private set; }
         [field: SerializeField] public SkillController SkillController { get; private set; }
         [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
+        [field: SerializeField] public Animator Animator { get; private set; }
 
         public int CurHealth {  get; private set; }
         public float CurSpeed {  get; private set; }
@@ -27,6 +28,7 @@ namespace PlantsZombiesAR.Zombies
         public void ChangeHealth(int amount)
         {
             CurHealth = Mathf.Clamp(CurHealth - amount, 0, Stat.Health);
+            Debug.Log(amount);
         }
 
         public void DestroyZombie()
