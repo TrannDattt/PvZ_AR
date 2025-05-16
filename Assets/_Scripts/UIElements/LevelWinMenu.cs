@@ -23,7 +23,7 @@ namespace PlantsZombiesAR.UIElements
         public override void MenuExit()
         {
             gameObject.SetActive(false);
-            StartCoroutine(Fade(false, .5f));
+            // StartCoroutine(Fade(false, .5f));
         }
 
         private IEnumerator Fade(bool fadeIn, float fadeTime)

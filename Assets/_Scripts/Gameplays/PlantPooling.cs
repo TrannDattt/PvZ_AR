@@ -13,6 +13,7 @@ namespace PlantsZombiesAR.Gameplays
         [SerializeField] private PlantController _sunflowerPreb;
         [SerializeField] private PlantController _wallnutPreb;
         [SerializeField] private PlantController _potatominePreb;
+        [SerializeField] private PlantController _cherryPreb;
 
         [SerializeField] private Transform _spawnedPlantPos;
 
@@ -20,32 +21,28 @@ namespace PlantsZombiesAR.Gameplays
         private Queue<PlantController> _sunflowerQueue = new();
         private Queue<PlantController> _wallnutQueue = new();
         private Queue<PlantController> _potatomineQueue = new();
+        private Queue<PlantController> _cherryQueue = new();
 
-        public void InitPool(){
+        public void InitPool()
+        {
             _peashooterQueue.Clear();
             _sunflowerQueue.Clear();
             _wallnutQueue.Clear();
+            _potatomineQueue.Clear();
+            _cherryQueue.Clear();
         }
 
         public PlantController SpawnPlant(EPlant plant, Vector3 spawnPos)
         {
-            switch (plant)
+            return plant switch
             {
-                case EPlant.Peashooter:
-                    return GetPlantFromPool(_peashooterPreb, _peashooterQueue, spawnPos);
-
-                case EPlant.Sunflower:
-                    return GetPlantFromPool(_sunflowerPreb, _sunflowerQueue, spawnPos);
-
-                case EPlant.Wallnut:
-                    return GetPlantFromPool(_wallnutPreb, _wallnutQueue, spawnPos);
-
-                case EPlant.Potatomine:
-                    return GetPlantFromPool(_potatominePreb, _potatomineQueue, spawnPos);
-
-                default:
-                    return null;
-            }
+                EPlant.Peashooter => GetPlantFromPool(_peashooterPreb, _peashooterQueue, spawnPos),
+                EPlant.Sunflower => GetPlantFromPool(_sunflowerPreb, _sunflowerQueue, spawnPos),
+                EPlant.Wallnut => GetPlantFromPool(_wallnutPreb, _wallnutQueue, spawnPos),
+                EPlant.Potatomine => GetPlantFromPool(_potatominePreb, _potatomineQueue, spawnPos),
+                EPlant.Cherry => GetPlantFromPool(_cherryPreb, _cherryQueue, spawnPos),
+                _ => null,
+            };
         }
 
         public void RemovePlant(PlantController plant)
@@ -66,6 +63,10 @@ namespace PlantsZombiesAR.Gameplays
 
                 case EPlant.Potatomine:
                     _potatomineQueue.Enqueue(plant);
+                    break;
+
+                case EPlant.Cherry:
+                    _cherryQueue.Enqueue(plant);
                     break;
 
                 default:

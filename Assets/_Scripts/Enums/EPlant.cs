@@ -11,5 +11,6 @@ namespace PlantsZombiesAR.Enums
         Sunflower,
         Potatomine,
         Wallnut,
+        Cherry,
     }
 }
