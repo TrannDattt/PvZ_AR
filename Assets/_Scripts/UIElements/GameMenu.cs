@@ -3,8 +3,10 @@ using UnityEngine;
 
 namespace PlantsZombiesAR.UIElements
 {
-    public abstract class GameMenu : MonoBehaviour
+    public class GameMenu : MonoBehaviour
     {
+        private bool _isMenuActive;
+
         public virtual void InitMenu()
         {
 
@@ -12,12 +14,26 @@ namespace PlantsZombiesAR.UIElements
 
         public virtual void MenuEnter()
         {
+            _isMenuActive = true;
             gameObject.SetActive(true);
         }
 
         public virtual void MenuExit()
         {
+            _isMenuActive = false;
             gameObject.SetActive(false);
+        }
+
+        public void ChangeDisplayMode()
+        {
+            if (_isMenuActive)
+            {
+                MenuExit();
+            }
+            else
+            {
+                MenuEnter();
+            }
         }
 
         protected virtual void Start()

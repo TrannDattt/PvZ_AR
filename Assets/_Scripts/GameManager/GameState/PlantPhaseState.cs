@@ -42,6 +42,8 @@ namespace PlantsZombiesAR.GameManager
             ZombieDiedCounter.ResetCounter();
 
             _progressSlider.InitSlider();
+
+            GameManager.Instance.ResumeGame();
         }
 
         public override void Exit()
@@ -54,7 +56,7 @@ namespace PlantsZombiesAR.GameManager
             _progressSlider.DeactivateSlider();
             _groundManager.DeactivePlane();
 
-            Time.timeScale = 0;
+            GameManager.Instance.PauseGame();
         }
 
         public override void FixedDo()

@@ -7,8 +7,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
-using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 namespace PlantsZombiesAR.GameManager
 {
@@ -110,7 +108,7 @@ namespace PlantsZombiesAR.GameManager
             UnselectSlot();
         }
 
-        private void OnPlaneChanged(ARPlanesChangedEventArgs args)
+        private void OnPlaneChanged(ARTrackablesChangedEventArgs<ARPlane> args)
         {
             foreach (ARPlane plane in args.added)
             {
@@ -125,7 +123,7 @@ namespace PlantsZombiesAR.GameManager
         {
             _camera = Camera.main;
 
-            _arPlaneManager.planesChanged += OnPlaneChanged;
+            _arPlaneManager.trackablesChanged.AddListener(OnPlaneChanged);
         }
 
         private void Update()

@@ -16,7 +16,7 @@ namespace PlantsZombiesAR.UIElements
         [SerializeField] private List<Image> _selectIndicators;
         [SerializeField] private GameObject _selectMenuParent;
         [SerializeField] private ShopItem _shopItemPreb;
-        //[SerializeField] private Button _finishSelectBtn;
+        [SerializeField] private Button _finishSelectBtn;
 
         public List<ShopItem> SelectedItems { get; private set; } = new();
 
@@ -65,7 +65,7 @@ namespace PlantsZombiesAR.UIElements
             {
                 SelectedItems.Add(item);
                 ActivateIndicator(item);
-                UpdateCount();
+                UpdateUI();
             }
         }
 
@@ -73,7 +73,7 @@ namespace PlantsZombiesAR.UIElements
         {
             SelectedItems.Remove(item);
             DeactivateIndicator(item);
-            UpdateCount();
+            UpdateUI();
         }
 
         private void ActivateIndicator(ShopItem item)
@@ -91,9 +91,10 @@ namespace PlantsZombiesAR.UIElements
             indicator.SetActive(false);
         }
 
-        private void UpdateCount()
+        private void UpdateUI()
         {
             _plantCount.text = $"{SelectedItems.Count}/{MAX_PLANT}";
+            _finishSelectBtn.interactable = SelectedItems.Count > 0;
         }
     }
 }
