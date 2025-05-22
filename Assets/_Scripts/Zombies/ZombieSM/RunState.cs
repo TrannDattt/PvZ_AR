@@ -18,14 +18,14 @@ namespace PlantsZombiesAR.Zombies
         {
             base.Enter();
 
-            _zombie.Rigidbody.velocity = _zombie.CurSpeed * Vector3.back;
+            _zombie.Rigidbody.linearVelocity = _zombie.CurSpeed * Vector3.back;
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            _zombie.Rigidbody.velocity = Vector3.zero;
+            _zombie.Rigidbody.linearVelocity = Vector3.zero;
         }
 
         public override void FixedDo()

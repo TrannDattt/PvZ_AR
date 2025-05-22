@@ -34,7 +34,7 @@ namespace PlantsZombiesAR.Projectiles
         public virtual void DestroyProjectile()
         {
             _isDestroyed = true;
-            Rigidbody.velocity = Vector3.zero;
+            Rigidbody.linearVelocity = Vector3.zero;
             gameObject.SetActive(false);
 
             ProjectilePooling.Instance.RemoveProjectile(this);

@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "AR_Test2.sln"
+    "dotnet.defaultSolution": "PvZ_AR.sln"
 }

@@ -73,14 +73,14 @@ namespace PlantsZombiesAR.Gameplays
                 var newProjectile = Instantiate(projectilePreb, spawnPos, Quaternion.identity);
                 newProjectile.Init();
                 newProjectile.transform.SetParent(_spawnedProjectilePos);
-                newProjectile.Rigidbody.velocity = velocity;
+                newProjectile.Rigidbody.linearVelocity = velocity;
                 return newProjectile;
             }
 
             var spawnProjectile = projectileQueue.Dequeue();
             spawnProjectile.Init();
             spawnProjectile.transform.position = spawnPos;
-            spawnProjectile.Rigidbody.velocity = velocity;
+            spawnProjectile.Rigidbody.linearVelocity = velocity;
             return spawnProjectile;
         }
 
